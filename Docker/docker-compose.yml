@@ -1,11 +1,71 @@
 ﻿services:
-  web:
-    hostname: web
+  web-server:
+    depends_on:
+      redis:
+        condition: service_healthy
+        required: true
+    hostname: web-server
     image: web-example:dev
     build:
       context: ..
       dockerfile: example/Example/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - application_type=Server
+      - hangfire_redis_host=redis
+      - hangfire_redis_port=6379
+      - hangfire_redis_database=0
+      - "hangfire_redis_prefix=web:example:hangfire:"
+  web-backend:
+    depends_on:
+      redis:
+        condition: service_healthy
+        required: true
+    hostname: web-backend
+    image: web-example:dev
+    build:
+      context: ..
+      dockerfile: example/Example/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - application_type=Backend
+      - hangfire_redis_host=redis
+      - hangfire_redis_port=6379
+      - hangfire_redis_database=0
+      - "hangfire_redis_prefix=web:example:hangfire:"
+      - jwt_issuer=web-example
+      - jwt_audience=web-example
+      - jwt_key=<token>
     ports:
       - "8080:8080"
+  web-worker:
+    depends_on:
+      redis:
+        condition: service_healthy
+        required: true
+    hostname: web-worker
+    image: web-example:dev
+    build:
+      context: ..
+      dockerfile: example/Example/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - application_type=Worker
+      - hangfire_redis_host=redis
+      - hangfire_redis_port=6379
+      - hangfire_redis_database=0
+      - "hangfire_redis_prefix=web:example:hangfire:"
+  redis:
+    hostname: redis
+    image: redis:8.0-M03-alpine3.21
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping", "|", "grep", "PONG"]
+      interval: 1s
+      retries: 20
+
+volumes:
+  redis:
