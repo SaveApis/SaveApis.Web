@@ -1,0 +1,11 @@
+﻿services:
+  web:
+    hostname: web
+    image: web-example:dev
+    build:
+      context: ..
+      dockerfile: example/Example/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:8080"
