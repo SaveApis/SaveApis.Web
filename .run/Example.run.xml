@@ -8,7 +8,9 @@
         <option name="commandLineOptions" value="--build" />
         <option name="services">
           <list>
-            <option value="web" />
+            <option value="web-backend" />
+            <option value="web-server" />
+            <option value="web-worker" />
           </list>
         </option>
         <option name="sourceFilePath" value="Docker/docker-compose.yml" />
