@@ -29,6 +29,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - application_type=Backend
+      - "hangfire_title=Web Example"
       - hangfire_redis_host=redis
       - hangfire_redis_port=6379
       - hangfire_redis_database=0
@@ -65,6 +66,7 @@
     healthcheck:
       test: ["CMD", "redis-cli", "ping", "|", "grep", "PONG"]
       interval: 1s
+      timeout: 1s
       retries: 20
 
 volumes:
