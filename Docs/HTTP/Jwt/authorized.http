@@ -1,0 +1,2 @@
+﻿GET http://localhost:8080/api/jwt/authorized
+Authorization: Bearer <token-generated-by-login-file>
