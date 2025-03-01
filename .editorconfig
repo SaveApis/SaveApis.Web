@@ -7,14 +7,23 @@ root = true
 indent_style = space
 
 # Microsoft .NET properties
-csharp_preferred_modifier_order = internal, public, protected, private, file, new, static, sealed, async, override, abstract, readonly, extern, unsafe, volatile, required, virtual:suggestion
+csharp_new_line_before_members_in_object_initializers = false
+csharp_preferred_modifier_order = protected, public, virtual, abstract, file, new, internal, sealed, private, override, static, readonly, extern, unsafe, volatile, required, async:suggestion
+csharp_preserve_single_line_blocks = true
 
 # ReSharper properties
 resharper_blank_lines_after_block_statements = 1
 resharper_blank_lines_after_multiline_statements = 1
 resharper_blank_lines_before_block_statements = 1
-resharper_blank_lines_before_control_transfer_statements = 0
+resharper_blank_lines_before_control_transfer_statements = 1
+resharper_braces_for_foreach = required
 resharper_csharp_blank_lines_around_invocable = 0
+resharper_csharp_insert_final_newline = true
+resharper_csharp_keep_existing_enum_arrangement = false
+resharper_csharp_max_line_length = 151
+resharper_instance_members_qualify_declared_in = 
+resharper_trailing_comma_in_multiline_lists = true
+resharper_wrap_object_and_collection_initializer_style = chop_always
 resharper_wrap_ternary_expr_style = chop_if_long
 
 # Code files

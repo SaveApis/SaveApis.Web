@@ -11,7 +11,7 @@ namespace SaveApis.Web.Infrastructure.Extensions;
 
 public static class WebApplicationBuilderExtensions
 {
-    private static AssemblyHelper Helper { get; } = new(Assembly.GetExecutingAssembly());
+    private static AssemblyHelper AssemblyHelper { get; } = new(Assembly.GetExecutingAssembly());
 
     public static ApplicationType ReadApplicationType(this WebApplicationBuilder builder)
     {
@@ -22,7 +22,7 @@ public static class WebApplicationBuilderExtensions
 
     public static WebApplicationBuilder WithAssemblies(this WebApplicationBuilder builder, params Assembly[] assemblies)
     {
-        Helper.AddAssemblies(assemblies);
+        AssemblyHelper.AddAssemblies(assemblies);
 
         return builder;
     }
@@ -34,9 +34,10 @@ public static class WebApplicationBuilderExtensions
             if (applicationType == ApplicationType.Backend)
             {
                 containerBuilder.WithWebModule<JwtModule>(builder.Configuration);
+                containerBuilder.WithWebModule<RestModule>(AssemblyHelper);
             }
 
-            containerBuilder.WithCommonModules(builder.Configuration, Helper, applicationType);
+            containerBuilder.WithCommonModules(builder.Configuration, AssemblyHelper, applicationType);
         });
 
         return builder;
