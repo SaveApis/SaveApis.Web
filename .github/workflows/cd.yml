@@ -1,0 +1,46 @@
+﻿name: CD
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'CHANGELOG.md'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+      - name: Cache
+        id: cache
+        uses: actions/cache@v4.2.1
+        with:
+          path: |
+            ~/.nuget/packages
+            **/obj
+          key: ${{ hashFiles('**/*.csproj') }}-build
+      
+      
+      # Setup
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4.3.0
+        with:
+          dotnet-version: 9.0.x
+      
+      # Action
+      - name: Add nuget feeds
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: dotnet nuget add source ${{ secrets.HANGFIRE_ACE_URL }} --name Hangfire.ACE --username ${{ secrets.HANGFIRE_ACE_USER }} --password ${{ secrets.HANGFIRE_ACE_TOKEN }} --store-password-in-clear-text && dotnet nuget add source ${{ secrets.HANGFIRE_PRO_URL }} --name Hangfire.PRO --username ${{ secrets.HANGFIRE_PRO_USER }} --password ${{ secrets.HANGFIRE_PRO_TOKEN }} --store-password-in-clear-text && dotnet nuget add source https://nuget.pkg.github.com/SaveApis/index.json --name GitHub --username ${{ github.actor }} --password ${{ github.token }} --store-password-in-clear-text
+      - name: Restore dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: dotnet restore src/SaveApis.Web/SaveApis.Web.csproj
+      - name: Build
+        run: dotnet build src/SaveApis.Web/SaveApis.Web.csproj --nologo --configuration Release --no-restore
+      - name: Pack
+        run: dotnet pack src/SaveApis.Web/SaveApis.Web.csproj -o publish/ --nologo --configuration Release --no-restore
+      - name: Publish
+        run: dotnet nuget push publish/*.nupkg --source https://nuget.pkg.github.com/SaveApis/index.json --api-key ${{ github.token }}
