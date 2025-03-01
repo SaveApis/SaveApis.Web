@@ -1,4 +1,11 @@
 SaveApis.Web
+<a name="1.0.1"></a>
+## [1.0.1](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v1.0.1) (2025-03-01)
+
+### Other
+
+* **deps:** Update SaveApis.Common dependency ([#9](https://www.github.com/SaveApis/SaveApis.Web/issues/9)) ([a4995d3](https://www.github.com/SaveApis/SaveApis.Web/commit/a4995d36e1ef8b97d0212245edb2f11857c39c7c))
+
 <a name="1.0.0"></a>
 ## [1.0.0](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v1.0.0) (2025-03-01)
 
