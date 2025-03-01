@@ -36,6 +36,7 @@ public static class WebApplicationBuilderExtensions
                 containerBuilder.WithWebModule<JwtModule>(builder.Configuration);
                 containerBuilder.WithWebModule<RestModule>(AssemblyHelper);
                 containerBuilder.WithWebModule<CorrelateWebModule>();
+                containerBuilder.WithWebModule<HangfireDashboardModule>(AssemblyHelper);
             }
 
             containerBuilder.WithCommonModules(builder.Configuration, AssemblyHelper, applicationType);
