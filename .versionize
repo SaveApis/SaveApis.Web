@@ -1,7 +1,7 @@
 ﻿{
   "skipDirty": true,
   "changelog": {
-    "header": "SaveApis.Common",
+    "header": "SaveApis.Web",
     "includeAllCommits": true,
     "sections": [
       {
