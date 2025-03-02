@@ -1,4 +1,11 @@
 SaveApis.Web
+<a name="1.1.0"></a>
+## [1.1.0](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v1.1.0) (2025-03-02)
+
+### ✨ Features
+
+* **di:** Add additional modules support ([a6598c6](https://www.github.com/SaveApis/SaveApis.Web/commit/a6598c636182c404da75cc2df99bf4e49143301e))
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v1.0.1) (2025-03-01)
 
