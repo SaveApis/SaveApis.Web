@@ -2,9 +2,11 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using SaveApis.Common.Application.Helper;
 using SaveApis.Common.Domain.Types;
 using SaveApis.Common.Infrastructure.Extensions;
+using SaveApis.Common.Infrastructure.Helper;
 using SaveApis.Web.Application.DI;
 
 namespace SaveApis.Web.Infrastructure.Extensions;
@@ -27,7 +29,8 @@ public static class WebApplicationBuilderExtensions
         return builder;
     }
 
-    public static WebApplicationBuilder WithSaveApis(this WebApplicationBuilder builder, ApplicationType applicationType)
+    public static WebApplicationBuilder WithSaveApis(this WebApplicationBuilder builder, ApplicationType applicationType,
+        Action<ContainerBuilder, IConfiguration, IAssemblyHelper, ApplicationType>? additionalModules = null)
     {
         builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>((_, containerBuilder) =>
         {
@@ -40,7 +43,7 @@ public static class WebApplicationBuilderExtensions
                 containerBuilder.WithWebModule<HangfireDashboardModule>(AssemblyHelper);
             }
 
-            containerBuilder.WithCommonModules(builder.Configuration, AssemblyHelper, applicationType);
+            containerBuilder.WithCommonModules(builder.Configuration, AssemblyHelper, applicationType, additionalModules);
         });
 
         return builder;
