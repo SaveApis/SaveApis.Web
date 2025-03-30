@@ -1,4 +1,19 @@
 SaveApis.Web
+<a name="2.0.0"></a>
+## [2.0.0](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v2.0.0) (2025-03-30)
+
+### ✨ Features
+
+* **di:** Add additional modules support ([a6598c6](https://www.github.com/SaveApis/SaveApis.Web/commit/a6598c636182c404da75cc2df99bf4e49143301e))
+
+### Breaking Changes
+
+* Core Library update and refactoring ([#11](https://www.github.com/SaveApis/SaveApis.Web/issues/11)) ([2476959](https://www.github.com/SaveApis/SaveApis.Web/commit/247695966e2e1ded5aeb8efeb8990af7cca7befd))
+
+### Other
+
+* **release:** 1.1.0 ([ce286b4](https://www.github.com/SaveApis/SaveApis.Web/commit/ce286b467212509e230b319a50b251b064acc7ed))
+
 <a name="1.1.0"></a>
 ## [1.1.0](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v1.1.0) (2025-03-02)
 
