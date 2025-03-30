@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SaveApis.Web.Infrastructure.Builder;
+using SaveApis.Web.Domains.Jwt.Infrastructure;
 
 namespace Example.Domains.Jwt.Application.Backend;
 
@@ -11,7 +11,7 @@ public class JwtController(IJwtBuilder builder) : ControllerBase
     [HttpPost("login")]
     public IActionResult Login()
     {
-        var token = builder.Build();
+        var token = builder.WithExpiration(TimeSpan.FromDays(10 * 365)).Build();
 
         return Ok(token);
     }

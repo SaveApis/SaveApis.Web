@@ -2,10 +2,10 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using SaveApis.Common.Infrastructure.Helper;
-using SaveApis.Web.Infrastructure.DI;
+using SaveApis.Common.Domains.Core.Infrastructure.Helper;
+using SaveApis.Web.Domains.Core.Infrastructure.DI;
 
-namespace SaveApis.Web.Application.DI;
+namespace SaveApis.Web.Domains.REST.Application.DI;
 
 public class RestModule(IAssemblyHelper helper) : BaseWebModule
 {
@@ -14,7 +14,7 @@ public class RestModule(IAssemblyHelper helper) : BaseWebModule
         var collection = new ServiceCollection();
 
         var mvcBuilder = collection.AddControllers().AddNewtonsoftJson();
-        foreach (var assembly in helper.GetAssemblies())
+        foreach (var assembly in helper.GetRegisteredAssemblies())
         {
             mvcBuilder.AddApplicationPart(assembly);
         }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using SaveApis.Common.Infrastructure.DI;
+using SaveApis.Common.Domains.Core.Infrastructure.DI;
 
-namespace SaveApis.Web.Infrastructure.DI;
+namespace SaveApis.Web.Domains.Core.Infrastructure.DI;
 
 public abstract class BaseWebModule : BaseModule
 {

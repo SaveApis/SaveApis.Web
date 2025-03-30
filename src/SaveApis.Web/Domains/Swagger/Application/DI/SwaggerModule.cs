@@ -3,9 +3,9 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SaveApis.Web.Infrastructure.DI;
+using SaveApis.Web.Domains.Core.Infrastructure.DI;
 
-namespace SaveApis.Web.Application.DI;
+namespace SaveApis.Web.Domains.Swagger.Application.DI;
 
 public class SwaggerModule : BaseWebModule
 {

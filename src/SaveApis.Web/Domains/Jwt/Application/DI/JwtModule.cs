@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using SaveApis.Web.Infrastructure.DI;
+using SaveApis.Web.Domains.Core.Infrastructure.DI;
 
-namespace SaveApis.Web.Application.DI;
+namespace SaveApis.Web.Domains.Jwt.Application.DI;
 
 public class JwtModule(IConfiguration configuration) : BaseWebModule
 {

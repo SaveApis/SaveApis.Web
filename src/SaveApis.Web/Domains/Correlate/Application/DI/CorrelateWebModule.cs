@@ -4,9 +4,9 @@ using Correlate.AspNetCore;
 using Correlate.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using SaveApis.Web.Infrastructure.DI;
+using SaveApis.Web.Domains.Core.Infrastructure.DI;
 
-namespace SaveApis.Web.Application.DI;
+namespace SaveApis.Web.Domains.Correlate.Application.DI;
 
 public class CorrelateWebModule : BaseWebModule
 {
