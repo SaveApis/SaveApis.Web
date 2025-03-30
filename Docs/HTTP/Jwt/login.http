@@ -1,2 +1,2 @@
-﻿POST http://localhost:8080/api/jwt/login
+﻿POST http://localhost/api/jwt/login
 X-Correlation-ID: 00000000-0000-0000-0000-000000000000

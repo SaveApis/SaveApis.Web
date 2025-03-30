@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using SaveApis.Common.Domain.Types;
 
-namespace SaveApis.Web.Infrastructure.Extensions;
+namespace SaveApis.Web.Domains.Core.Infrastructure.Extensions;
 
 public static class WebApplicationExtensions
 {
-    public static async Task RunSaveApisAsync(this WebApplication application, ApplicationType applicationType)
+    public static async Task RunSaveApisAsync(this WebApplication application, bool isBackend)
     {
         foreach (var actions in ContainerBuilderExtensions.PreAuthenticationActions)
         {
             await actions(application).ConfigureAwait(false);
         }
 
-        if (applicationType == ApplicationType.Backend)
+        if (isBackend)
         {
             application.UseAuthentication();
             application.UseAuthorization();

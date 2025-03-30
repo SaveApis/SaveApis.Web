@@ -3,12 +3,13 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using SaveApis.Web.Infrastructure.Builder;
+using SaveApis.Web.Domains.Jwt.Infrastructure;
 
-namespace SaveApis.Web.Application.Builder;
+namespace SaveApis.Web.Domains.Jwt.Application.Builder;
 
 public class JwtBuilder(IConfiguration configuration) : IJwtBuilder
 {
+    private TimeSpan Expiration { get; set; } = TimeSpan.FromHours(8);
     private ICollection<Claim> Claims { get; } = [];
 
     public IJwtBuilder AddClaim(string type, string value)
@@ -32,20 +33,25 @@ public class JwtBuilder(IConfiguration configuration) : IJwtBuilder
 
         return this;
     }
+    public IJwtBuilder WithExpiration(TimeSpan expiration)
+    {
+        Expiration = expiration;
+
+        return this;
+    }
 
     public string Build()
     {
         var issuer = configuration["jwt_issuer"] ?? string.Empty;
         var audience = configuration["jwt_audience"] ?? string.Empty;
         var key = configuration["jwt_key"] ?? string.Empty;
-        var expiration = configuration["jwt_expiration"] ?? string.Empty;
 
         var descriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(Claims),
             Issuer = issuer,
             Audience = audience,
-            Expires = DateTime.UtcNow.AddHours(double.TryParse(expiration, out var e) ? e : 8),
+            Expires = DateTime.UtcNow.Add(Expiration),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)), SecurityAlgorithms.HmacSha256Signature),
         };
 

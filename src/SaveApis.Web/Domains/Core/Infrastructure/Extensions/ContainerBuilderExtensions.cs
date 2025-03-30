@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
-using SaveApis.Common.Infrastructure.Extensions;
-using SaveApis.Web.Infrastructure.DI;
+using SaveApis.Common.Domains.Core.Infrastructure.Extensions;
+using SaveApis.Web.Domains.Core.Infrastructure.DI;
 
-namespace SaveApis.Web.Infrastructure.Extensions;
+namespace SaveApis.Web.Domains.Core.Infrastructure.Extensions;
 
 public static class ContainerBuilderExtensions
 {
