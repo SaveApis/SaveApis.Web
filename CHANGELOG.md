@@ -1,4 +1,11 @@
 SaveApis.Web
+<a name="2.0.1"></a>
+## [2.0.1](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v2.0.1) (2025-04-01)
+
+### Other
+
+* Update required core library fix ([#12](https://www.github.com/SaveApis/SaveApis.Web/issues/12)) ([2838d6c](https://www.github.com/SaveApis/SaveApis.Web/commit/2838d6c17965ff83516676ac1768427cb6e9f3b6))
+
 <a name="2.0.0"></a>
 ## [2.0.0](https://www.github.com/SaveApis/SaveApis.Web/releases/tag/v2.0.0) (2025-03-30)
 
